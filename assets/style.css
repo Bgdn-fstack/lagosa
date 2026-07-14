@@ -1,5 +1,15 @@
 :root {
     --primary-font: 'Fira Sans', system-ui, -apple-system, sans-serif;
+    --biggest-font-size: calc(var(--nav-font-size) + 0.25rem);
+    --bigger-font-size: calc(var(--nav-font-size) + 0.125rem);
+    --nav-font-size: 1rem;
+    --small-font-size: calc(var(--nav-font-size) - 0.125rem);
+    --smallest-font-size: calc(var(--nav-font-size) - 0.25rem);
+
+    --nav-line-height: 1.5rem;
+    --big-line-height: calc(var(--nav-line-height) + 0.25rem);
+    --small-line-height: calc(var(--nav-line-height) - 0.25rem);
+
     --primaryYellow: #f7a600;
     --primaryRed: #a92d0d;
     --primaryDark: #2b2b2b;
@@ -7,28 +17,20 @@
     --secondaryOrange: #ef7c00;
     --secondaryYellow: #fbb900;
     --secondaryGrey: #888;
-    --secondaryPurple: #7661ad;
-    --lightYellow: #fef7e6;
     --lightGray: #f7f7f7;
     --lightGray-50: #faf8f7;
     --middleGray: #ccc;
-    --lightGray-500: hsla(0,0%,53%,.07);
     --logoRed: #971e0f;
     --logoOrange: #ec6500;
 
-    /* Базовые цвета */
-    --color-primary: #4F46E5;
-    --color-nav-bg: #FFFFFF;
     --color-text-main: #1F2937;
-    --color-text-nav: #6B7280;
-    
-    /* Контрастные фоны для секций */
     --bg-hero: #727680;
 
     /* Размеры и отступы */
     --section-padding: 40px 0;
     --section-padding-container: 40px 20px;
     --section-margin-bottom: 2.5rem;
+    --section-margin-bottom-small: 1rem;
 
     --container-max-width: 1920px;
 
@@ -55,7 +57,6 @@ h1, h2, h3, h4, strong, .bold-text {
     font-weight: 700;
 }
 
-/* --- Навигация --- */
 .navbar {
     position: relative;
     top: 0;
@@ -69,7 +70,7 @@ h1, h2, h3, h4, strong, .bold-text {
 
     &.is-sticky {
         position: sticky;
-        background-color: var(--color-nav-bg);
+        background-color: var(--white);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         border-bottom: 1px solid var(--secondaryOrange);
 
@@ -96,7 +97,7 @@ h1, h2, h3, h4, strong, .bold-text {
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    width: 120px;
+    width: 140px;
     height: auto;
 
     svg {
@@ -107,10 +108,10 @@ h1, h2, h3, h4, strong, .bold-text {
 .nav-links {
     display: flex;
     gap: 0.5rem;
-    overflow-x: auto; /* Плавный горизонтальный скролл */
+    overflow-x: auto;
     overscroll-behavior-x: contain;
-    scrollbar-width: none; /* Скрываем скроллбар в Firefox */
-    -ms-overflow-style: none; /* Скрываем скроллбар в IE/Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     white-space: nowrap;
     align-items: center;
     height: 100%;
@@ -119,14 +120,13 @@ h1, h2, h3, h4, strong, .bold-text {
     list-style: none;
 }
 
-/* Скрываем скроллбар в Chrome/Safari/Opera */
 .nav-links::-webkit-scrollbar {
     display: none;
 }
 
 .nav-link {
     text-decoration: none;
-    font-size: 1.125rem;
+    font-size: var(--nav-font-size);
     transition: color 0.3s ease;
     padding: 4px 6px;
     margin: 0;
@@ -186,18 +186,18 @@ h1, h2, h3, h4, strong, .bold-text {
     }
 
     p {
-        font-size: 1rem;
-        line-height: 1.5rem;
+        font-size: var(--nav-font-size);
+        line-height: var(--nav-line-height);
     }
 
     .bigger {
-        font-size: 1.25rem;
-        line-height: 1.75rem;
+        font-size: var(--biggest-font-size);
+        line-height: var(--big-line-height);
     }
 
     .smaller {
-        font-size: 0.875rem;
-        line-height: 1.25rem;
+        font-size: var(--small-font-size);
+        line-height: var(--small-line-height);
     }
 }
 
@@ -211,7 +211,7 @@ h1, h2, h3, h4, strong, .bold-text {
     li {
         padding-left: 2.625rem;
         margin-bottom: 1rem;
-        line-height: 1.5rem;
+        line-height: var(--nav-line-height);
         position: relative;
 
         &::before {
@@ -236,8 +236,8 @@ h1, h2, h3, h4, strong, .bold-text {
 }
 
 .smaller {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    font-size: var(--small-font-size);
+    line-height: var(--small-line-height);
 }
 
 .stronger.stronger {
@@ -287,11 +287,9 @@ h1, h2, h3, h4, strong, .bold-text {
         top: 0;
         left: 0;
         right: 0;
-        /* Высота фильтра (чуть больше самой шапки для мягкого рассеивания) */
         height: 140px; 
-        /* Мягкое затемнение: от 40% черного до полной прозрачности */
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
-        pointer-events: none; /* Чтобы фильтр не мешал кликам */
+        pointer-events: none;
         transition: opacity 0.3s ease;
     }
 
@@ -309,7 +307,7 @@ h1, h2, h3, h4, strong, .bold-text {
     max-height: 370px;
     overflow: hidden;
     position: relative;
-    margin-top: -150px;
+    margin-top: -156px;
     z-index: 2;
 
     img {
@@ -346,7 +344,7 @@ h1, h2, h3, h4, strong, .bold-text {
         margin: 0 auto;
         margin-top: var(--icons-top-margin);
         padding: 0;
-        padding-bottom: var(--section-margin-bottom);
+        padding-bottom: var(--section-margin-bottom-small);
         color: var(--lightGray);
         max-width: 270px;
     }
@@ -362,7 +360,7 @@ h1, h2, h3, h4, strong, .bold-text {
     }
 
     h3 {
-        font-size: 1.125rem;
+        font-size: var(--bigger-font-size);
         text-align: left;
         margin: 1.75rem 0 0 0;
     }
@@ -388,7 +386,7 @@ h1, h2, h3, h4, strong, .bold-text {
     width: fit-content;
     min-width: 180px;
     height: 30px;
-    padding-left: 2rem;
+    padding-left: 1rem;
 
     position: absolute;
     top: -2px;
@@ -408,8 +406,8 @@ h1, h2, h3, h4, strong, .bold-text {
 .did-you-know__content {
     padding: 2.25rem 1rem 1rem;
     font-weight: 700;
-    font-size: 1.125rem;
-    line-height: 1.5rem;
+    font-size: var(--bigger-font-size);
+    line-height: var(--nav-line-height);
     color: var(--secondaryGrey);
 }
 
@@ -508,8 +506,8 @@ h1, h2, h3, h4, strong, .bold-text {
 
     p {
         margin-top: -0.25rem;
-        font-size: 1rem;
-        line-height: 1.125rem;
+        font-size: var(--nav-font-size);
+        line-height: var(--small-line-height);
         font-weight: 700;
     }
 }
@@ -594,7 +592,7 @@ footer {
 
     ul {
         list-style: none;
-        font-size: 0.875rem;
+        font-size: var(--small-font-size);
     }
 
     h4:not(:first-child) {
@@ -603,10 +601,13 @@ footer {
 }
 
 .address {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
     margin-top: var(--section-margin-bottom);
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+    }
 
     svg {
         width: 75px;
@@ -615,6 +616,14 @@ footer {
 
 section[id] {
   scroll-margin-top: 50px; 
+}
+
+.legend {
+    margin: auto;
+    padding: var(--padding);
+    padding-bottom: 1rem;
+    text-align: center;
+    font-size: var(--smallest-font-size);
 }
 
 
@@ -631,6 +640,10 @@ section[id] {
 
     .free {
         justify-content: space-around;
+    }
+
+    .logo {
+        width: 160px;
     }
 }
 
@@ -762,6 +775,10 @@ section[id] {
             height: 75px;
         }
     }
+
+    .legend {
+        max-width: 640px;
+    }
 }
 
 @media (min-width: 860px) {
@@ -878,6 +895,10 @@ section[id] {
     .address {
         margin-top: 5rem;
     }
+
+    .legend {
+        max-width: 860px;
+    }
 }
 
 @media (min-width: 1160px) {
@@ -900,6 +921,8 @@ section[id] {
     :root {
         --padding: 0 80px;
         --gradient-height: 640px;
+        --nav-font-size: 1.25rem;
+        --nav-line-height: 1.75rem;
     }
 
     .logos {
@@ -932,27 +955,23 @@ section[id] {
         }
 
         .bigger {
-            font-size: 1.5rem;
-            line-height: 2rem;
+            font-size: var(--biggest-font-size);
+            line-height: var(--big-line-height);
         }
 
         .smaller {
-            font-size: 1rem;
-            line-height: 1.5rem;
+            font-size: var(--smallest-font-size);
+            line-height: var(--small-line-height);
         }
 
         ul, p, th, td {
-            font-size: 1.25rem;
-            line-height: 1.75rem;
+            font-size: var(--nav-font-size);
+            line-height: var(--big-line-height);
         }
     }
 
     .nav-links {
         gap: 1.5rem;
-    }
-
-    .nav-link {
-        font-size: 1.25rem;
     }
 
     .container--guys {
@@ -969,7 +988,7 @@ section[id] {
 
     .header {
         h3 {
-            font-size: 1.25rem;
+            font-size: var(--nav-font-size);
         }
 
         ul svg {
@@ -985,14 +1004,14 @@ section[id] {
     }
 
     .did-you-know__badge {
-        font-size: 1.25rem;
+        font-size: var(--nav-font-size);
         min-width: 200px;
         height: 36px;
     }
 
     .did-you-know__content {
-        font-size: 1.5rem;
-        line-height: 2rem;
+        font-size: var(--biggest-font-size);
+        line-height: var(--big-line-height);
         padding-right: 2rem;
     }
 
@@ -1006,8 +1025,8 @@ section[id] {
         height: 150px;
 
         p {
-            font-size: 1.125rem;
-            line-height: 1.25rem;
+            font-size: var(--small-font-size);
+            line-height: var(--small-line-height);
         }
     }
 
@@ -1038,19 +1057,23 @@ section[id] {
         }
 
         ul {
-            font-size: 1rem;
+            font-size: var(--smallest-font-size);
         }
 
         h4 {
-            font-size: 1.25rem;
+            font-size: var(--nav-font-size);
         }
+    }
+
+    .legend {
+        padding-bottom: 0.5rem;
     }
 }
 
 @media (min-width: 1536px) {
     :root {
         --padding: 0 120px;
-        --gradient-height: 660px;
+        --gradient-height: 700px;
         --gradient-top-margin: calc( var(--gradient-height) * 0.65 * -1 );
         --icons-top-margin: calc( var(--gradient-height) * 0.35 * -1 );
     }
@@ -1101,5 +1124,58 @@ section[id] {
 
     .container--gradient img {
         max-width: 2560px;
+    }
+}
+
+@media (min-width: 2561px) {
+    :root {
+        --padding: 0 180px;
+        --nav-font-size: 1.5rem;
+        --nav-line-height: 2rem;
+    }
+
+    .logo {
+        width: 270px;
+    }
+
+    .navbar {
+        height: 80px;
+    }
+
+    .header {
+        margin-top: -82px;
+    }
+
+    .nav-link {
+        padding: 6px 10px;
+    }
+
+    .section--container, .container, .legend, .section header .subcontainer {
+        max-width: 1280px;
+    }
+
+    .container--guys {
+        height: 960px;
+    }
+
+    .container--box {
+        margin-top: -460px;
+
+        img {
+            max-width: 1200px;
+        }
+    }
+
+    .container--gradient img {
+        max-width: 100%;
+    }
+
+    .did-you-know__badge {
+        min-width: auto;
+        padding-right: 1.75rem;
+    }
+
+    .did-you-know__content {
+        padding-left: 16rem;
     }
 }
