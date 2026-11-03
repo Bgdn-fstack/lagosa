@@ -2,7 +2,7 @@
     --primary-font: 'Fira Sans', system-ui, -apple-system, sans-serif;
     --biggest-font-size: calc(var(--nav-font-size) + 0.25rem);
     --bigger-font-size: calc(var(--nav-font-size) + 0.125rem);
-    --nav-font-size: 1rem;
+    --nav-font-size: 0.85rem;
     --small-font-size: calc(var(--nav-font-size) - 0.125rem);
     --smallest-font-size: calc(var(--nav-font-size) - 0.25rem);
 
@@ -22,6 +22,7 @@
     --middleGray: #ccc;
     --logoRed: #971e0f;
     --logoOrange: #ec6500;
+    --cream: #FFF8EF;
 
     --color-text-main: #1F2937;
     --bg-hero: #727680;
@@ -51,12 +52,91 @@ body {
     color: var(--color-text-main);
     font-family: var(--primary-font);
     font-weight: 400;
+    background-color: var(--cream);
 }
 
 h1, h2, h3, h4, strong, .bold-text {
     font-weight: 700;
 }
 
+.buy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.25rem;
+    border-radius: 50%;
+    background-color: var(--logoRed);
+    color: var(--cream);
+
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    span {
+        display: none;
+    }
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--padding);
+    z-index: 3;
+    box-sizing: border-box;
+
+    background-color: transparent;
+    transform: translateY(0);
+
+    transition: 
+        background-color 0.4s ease, 
+        color 0.4s ease, 
+        padding 0.4s ease;
+
+    &.is-sticky {
+        position: fixed; /* Переключаем в фиксированное положение */
+        background-color: var(--white);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid var(--secondaryOrange);
+        
+        /* Запускаем анимацию красивого выезда сверху */
+        animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+        .red {
+            fill: var(--logoRed);
+        }
+
+        .orange {
+            fill: var(--logoOrange);
+        }
+
+        .nav-link {
+            color: var(--primaryDark);
+
+            &:hover, &.active {
+                color: var(--primaryRed);
+                border: 2px solid transparent;
+            }
+        }
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%); /* Вылетает из-за пределов экрана */
+    }
+    to {
+        transform: translateY(0); /* Становится на место */
+    }
+}
+
+
+/*
 .navbar {
     position: relative;
     top: 0;
@@ -66,7 +146,7 @@ h1, h2, h3, h4, strong, .bold-text {
     justify-content: space-between;
     padding: var(--padding);
     z-index: 3;
-    transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.6s ease, color 0.6s ease, padding 0.6s ease, box-shadow 0.6s ease;
 
     &.is-sticky {
         position: sticky;
@@ -92,6 +172,7 @@ h1, h2, h3, h4, strong, .bold-text {
         }
     }
 }
+*/
 
 .logo {
     display: flex;
@@ -107,7 +188,7 @@ h1, h2, h3, h4, strong, .bold-text {
 
 .nav-links {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.25rem;
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scrollbar-width: none;
@@ -115,7 +196,8 @@ h1, h2, h3, h4, strong, .bold-text {
     white-space: nowrap;
     align-items: center;
     height: 100%;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     padding: 0;
     list-style: none;
 }
@@ -128,16 +210,16 @@ h1, h2, h3, h4, strong, .bold-text {
     text-decoration: none;
     font-size: var(--nav-font-size);
     transition: color 0.3s ease;
-    padding: 4px 6px;
+    padding: 4px;
     margin: 0;
     position: relative;
-    color: var(--lightGray);
+    color: var(--cream);
     border-radius: 8px;
     border: 2px solid transparent;
     transition: border 0.3s ease, color 0.3s ease;
 
     &:hover, &.active {
-        border: 2px solid var(--lightGray);
+        border: 2px solid var(--cream);
     }
 }
 
@@ -287,8 +369,18 @@ h1, h2, h3, h4, strong, .bold-text {
         top: 0;
         left: 0;
         right: 0;
-        height: 140px; 
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
+        height: 75px; 
+       
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(0, 0, 0, 0.25) 40%,
+            rgba(0, 0, 0, 0.12) 65%,
+            rgba(0, 0, 0, 0.04) 85%,
+            rgba(0, 0, 0, 0.01) 95%,
+            rgba(0, 0, 0, 0) 100%
+        );
+
         pointer-events: none;
         transition: opacity 0.3s ease;
     }
@@ -307,7 +399,7 @@ h1, h2, h3, h4, strong, .bold-text {
     max-height: 370px;
     overflow: hidden;
     position: relative;
-    margin-top: -156px;
+    margin-top: -150px;
     z-index: 2;
 
     img {
@@ -336,7 +428,6 @@ h1, h2, h3, h4, strong, .bold-text {
 }
 
 .header {
-    margin-top: -52px;
     margin-bottom: var(--section-margin-bottom);
 
     ul {
@@ -627,15 +718,20 @@ section[id] {
 }
 
 
-@media (min-width: 470px) {
+@media (min-width: 450px) {
     :root {
         --gradient-height: 335px;
+        --nav-font-size: 0.9rem;
     }
 
     .container--box img {
         width: 100%;
         margin: 0 auto;
         margin-right: -7vw;
+    }
+
+    .container--guys img {
+        height: 380px;
     }
 
     .free {
@@ -688,6 +784,10 @@ section[id] {
     .section--container li {
         line-height: 2rem;
     }
+
+    .container--box {
+        margin-top: -120px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -719,8 +819,10 @@ section[id] {
         }
     }
 
-    .container--box img {
-        width: 100%;
+    .container--box {       
+        img {
+            width: 100%;
+        }
     }
 
     .wrapper {
@@ -779,16 +881,64 @@ section[id] {
     .legend {
         max-width: 640px;
     }
+
+    .buy {
+        display: flex;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        text-decoration: none;
+        gap: 0.25rem;
+
+        svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        span {
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        &:hover, &:focus {
+            background-color: var(--primaryRed);
+            transition: all ease-in 300ms;
+        }
+    }
+
+    .navbar {
+        justify-content: start;
+    }
+
+    .nav-links{
+        margin-left: auto;
+    }
 }
 
 @media (min-width: 860px) {
     :root {
         --gradient-height: 420px;
+        --nav-font-size: 1rem;
     }
 
     .header ul svg {
         width: 120px;
         height: 120px;
+    }
+
+    .container--box {
+        margin-top: -80px;
+    }
+
+    .buy {
+        padding: 0.3rem 0.5rem;
+
+        span {
+            font-size: var(--nav-font-size);
+        }
+    }
+
+    .nav-link {
+        padding: 4px 8px;
     }
 }
 
@@ -800,6 +950,10 @@ section[id] {
         --padding: 0 40px;
         --section-padding-container: 40px;
         --section-margin-bottom: 3rem;
+    }
+
+    .nav-links {
+        margin-right: 1rem;
     }
 
     .section h2 {
@@ -819,7 +973,6 @@ section[id] {
     }
 
     .header {
-        margin-top: -62px;
         overflow: hidden;
 
         ul svg {
@@ -836,6 +989,7 @@ section[id] {
 
     .container--box {
         max-height: 420px;
+        margin-top: -110px;
 
         img {
             max-width: 640px;
@@ -899,6 +1053,29 @@ section[id] {
     .legend {
         max-width: 860px;
     }
+
+    .container--guys {
+        display: flex;
+        justify-content: center;
+        background-color: var(--cream);
+
+        img {
+            width: 1024px;
+        }
+    }
+
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                    transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        will-change: opacity, transform;
+    }
+
+    .animate-on-scroll.element-show {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (min-width: 1160px) {
@@ -910,6 +1087,7 @@ section[id] {
 
     .container--box {
         max-height: 450px;
+        margin-top: -130px;
 
         img {
             max-width: 680px;
@@ -971,15 +1149,22 @@ section[id] {
     }
 
     .nav-links {
-        gap: 1.5rem;
+        gap: 0.5rem;
+        margin-right: 2rem;
     }
 
     .container--guys {
-        height: 600px;
+        height: 560px;
+        
+        img {
+            width: 1280px;
+            height: 560px;
+        }
     }
 
     .container--box {
         max-height: 560px;
+        margin-top: -145px;
 
         img {
             max-width: 800px;
@@ -1068,28 +1253,23 @@ section[id] {
     .legend {
         padding-bottom: 0.5rem;
     }
+
+    .buy {
+        padding: 0.5rem;
+
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
 }
 
 @media (min-width: 1536px) {
     :root {
-        --padding: 0 120px;
+        --padding: 0 160px;
         --gradient-height: 700px;
-        --gradient-top-margin: calc( var(--gradient-height) * 0.65 * -1 );
-        --icons-top-margin: calc( var(--gradient-height) * 0.35 * -1 );
-    }
-
-    .container--guys {
-        height: 860px;
-    }
-
-    .container--box {
-        max-height: 750px;
-        margin-top: -400px;
-
-        img {
-            max-width: 1000px;
-            left: 3vw;
-        }
+        --gradient-top-margin: calc( var(--gradient-height) * 0.5 * -1 );
+        --icons-top-margin: calc( var(--gradient-height) * 0.45 * -1 );
     }
 
     .section {
@@ -1114,6 +1294,7 @@ section[id] {
 
 @media (min-width: 1921px) {
     :root {
+        --padding: 0 240px;
         --gradient-height: 800px;
         --icons-top-margin: calc( var(--gradient-height) * 0.3 * -1 );
     }
@@ -1129,7 +1310,7 @@ section[id] {
 
 @media (min-width: 2561px) {
     :root {
-        --padding: 0 180px;
+        --padding: 0 320px;
         --nav-font-size: 1.5rem;
         --nav-line-height: 2rem;
     }
